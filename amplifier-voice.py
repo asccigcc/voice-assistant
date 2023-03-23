@@ -1,15 +1,17 @@
 import openai
 
+from dotenv import load_dotenv
+
 import speech_recognition as sr
 import pyttsx3
 import time
+import os
 
-
+load_dotenv()
 # Initialize OpenAI API
-openai.api_key = ""
+openai.api_key = os.environ.get("OPENAI_API_KEY")
 # Initialize the text to speech engine
 engine=pyttsx3.init()
-
 
 def transcribe_audio_to_test(filename):
     recogizer=sr.Recognizer()
@@ -53,9 +55,6 @@ def main():
                         audio=recognizer.listen(source,phrase_time_limit=None,timeout=None)
                         with open(filename,"wb")as f:
                             f.write(audio.get_wav_data())
-
-
-
 
                     #transcript audio to test
                     text=transcribe_audio_to_test(filename)
