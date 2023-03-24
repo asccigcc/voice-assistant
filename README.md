@@ -21,7 +21,7 @@ brew install portaudio
 After that you can install the required libraries using pip:
 
 ```
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 
 ## Usage
