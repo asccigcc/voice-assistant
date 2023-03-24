@@ -11,9 +11,26 @@ To use this code, you need to have Python 3.x and the following libraries instal
 - SpeechRecognition
 - pyttsx3
 
-You can install the required libraries using pip:
+You need to install first in your computer the following packages:
+
+In Mac:
+```
+brew install portaudio
+```
+
+After that you can install the required libraries using pip:
+
+```
+pip install requirements.txt
+```
 
 ## Usage
+
+If all is setup properly you can start the script with the following command:
+
+```
+python3 amplifier-voice.py
+```
 
 ## How works
 
