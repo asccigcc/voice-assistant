@@ -1,6 +1,8 @@
-# Amplifier voice assistant
+# Voice assistant
 
 This is a demo that uses ChatGPT as voice assistant that receive commands instructions and returns voice response.
+
+> No production code
 
 ## Installation
 
