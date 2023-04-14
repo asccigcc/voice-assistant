@@ -6,12 +6,15 @@ import speech_recognition as sr
 import pyttsx3
 import time
 import os
+import sys
 
 load_dotenv()
 # Initialize OpenAI API
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 # Initialize the text to speech engine
 engine=pyttsx3.init()
+engine.setProperty('rate', 170)
+engine.setProperty('voice', 'com.apple.speech.synthesis.voice.samantha')
 
 def transcribe_audio_to_test(filename):
     recogizer=sr.Recognizer()
@@ -39,16 +42,20 @@ def speak_text(text):
 def main():
     while True:
         #Waith for user say "ready"
-        print("Say 'Amp' to start recording your question")
+        print("Say 'Jarvis' to start recording your question")
         with sr.Microphone() as source:
             recognizer=sr.Recognizer()
             audio=recognizer.listen(source)
             try:
                 transcription = recognizer.recognize_google(audio)
-                if transcription.lower()=="amp":
+                if transcription.lower()=="exit":
+                    speak_text("See you later")
+                    sys.exit()
+                if transcription.lower()=="jarvis":
                     #record audio
                     filename ="input.wav"
                     print("Say your question")
+                    speak_text("Yes, what I can do for you?")
                     with sr.Microphone() as source:
                         recognizer=sr.Recognizer()
                         source.pause_threshold=1
@@ -60,6 +67,7 @@ def main():
                     text=transcribe_audio_to_test(filename)
                     if text:
                         print(f"you said {text}")
+                        speak_text("Of course")
 
                         #Generate the response
                         response = generate_response(text)
